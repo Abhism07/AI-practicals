@@ -46,7 +46,7 @@ def solution():
             [0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0],
           ]'''
-    board = np.zeros(shape=(n,n),dtype=np.int)     
+    board = np.zeros(shape=(n,n),dtype=np.int64)     
     if solve(board,0)== False:
         print("no solution exist")
         return False
