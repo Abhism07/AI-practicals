@@ -18,8 +18,8 @@ def get_bot_response(user_input):
         return "Coughing can be caused by several factors, including respiratory infections, allergies, or even acid reflux. If you have a persistent cough or other concerning symptoms, it's best to seek medical advice."
     
     if "fever" in user_input or "temperature" in user_input:
-        return "Fever is often a sign of an underlying infection. It's advisable to monitor your temperature and consult a doctor if it persists or is accompanied by other symptoms."
-       "\nSymptoms - Elevated body temperature, often indicating an underlying infection or inflammatory condition."
+        return "Fever is often a sign of an underlying infection. It's advisable to monitor your temperature and consult a doctor if it persists or is accompanied by other symptoms.\nSymptoms - Elevated body temperature, often indicating an underlying infection or inflammatory condition."
+       
     
     if "help" in user_input:
         return "Sure, I'm here to help! What do you need assistance with?"
