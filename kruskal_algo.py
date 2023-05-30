@@ -1,3 +1,20 @@
+def sort_arr():
+    Arr=[]
+    n = int(input("Enter the number of elements:"))
+    for i in range (n):
+        ele = int(input("enter elements:"))
+        Arr.append(ele)
+    
+    for i in range (len(Arr)):
+        ind=i
+        for j in range (i+1,len(Arr)):
+            if (Arr[ind]>Arr[j]):
+                ind=j
+        Arr[i],Arr[ind] = Arr[ind],Arr[i]
+    print("Sorted Array:")
+    for i in range (len(Arr)):
+        print(Arr[i],end=" ")
+	
 
 def find(parent, i):
     if parent[i] != i:
@@ -31,15 +48,21 @@ def kruskal_mst(edges, num_vertices):
             union(parent, rank, u, v)
 
     return result
-edges = [(0, 1, 4), (0, 7, 8), (1, 7, 11), (1, 2, 8), (2, 3, 7)]
 
-num_vertices = 9
+# Get user input for the edges
+edges = []
+num_vertices = int(input("Enter the number of vertices: "))
 
+for i in range (num_vertices):
+    u, v, w = map(int,input("Enter u v w :").split())
+    edges.append((u, v, w))
+
+
+# Find and print the minimum spanning tree
 mst = kruskal_mst(edges, num_vertices)
-print(mst)
-'''
-o/p-
-G:\Ai programs>python kruskal_algo.py
-[(0, 1, 4), (2, 3, 7), (0, 7, 8), (1, 2, 8)]
-'''
+print("Minimum Spanning Tree:")
+for u, v, w in mst:
+    print(f"{u} -- {v} : {w}")
+
+sort_arr()
 
