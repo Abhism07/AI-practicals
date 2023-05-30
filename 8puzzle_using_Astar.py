@@ -1,8 +1,11 @@
 import heapq
+
+# Define the goal state
 goal_state = ((1, 2, 3),
               (4, 5, 6),
               (7, 8, 0))
 
+# Define the heuristic function (Manhattan distance)
 def heuristic(state):
     distance = 0
     for i in range(3):
@@ -12,7 +15,7 @@ def heuristic(state):
                 distance += abs(row - i) + abs(col - j)
     return distance
 
-
+# Define the A* algorithm
 def solve_8_puzzle(initial_state):
     open_set = []
     heapq.heappush(open_set, (heuristic(initial_state), initial_state))
@@ -52,13 +55,26 @@ def solve_8_puzzle(initial_state):
                         f = new_cost + heuristic(new_state)
                         heapq.heappush(open_set, (f, new_state))
                         parent[new_state] = current_state
+
+    # No solution found
     return None
 
-initial_state = ((1, 0, 3),
-                 (4, 2, 5),
-                 (7, 8, 6))
+# Example usage
+'''initial_state = ((1, 2, 3),
+                   (4, 0, 5),
+                    (7, 8, 6))
 
-solution = solve_8_puzzle(initial_state)
+solution = solve_8_puzzle(initial_state)'''
+def get_user_input():
+    print("Enter the initial state of the 8-puzzle:")
+    initial_state = []
+    for i in range(3):
+        row = input("Enter row {} (space-separated values): ".format(i + 1)).split()
+        row_values = tuple(map(int, row))
+        initial_state.append(row_values)
+    return tuple(initial_state)
+
+solution = solve_8_puzzle(get_user_input())
 
 if solution:
     print("Solution found!")
@@ -68,3 +84,71 @@ if solution:
         print()
 else:
     print("No solution found.")
+'''
+o/p - 
+G:\Ai programs>python astar.py
+Enter the initial state of the 8-puzzle:
+Enter row 1 (space-separated values): 1 2 3
+Enter row 2 (space-separated values): 4 0 5
+Enter row 3 (space-separated values): 6 7 8
+Solution found!
+(1, 2, 3)
+(4, 0, 5)
+(6, 7, 8)
+
+(1, 2, 3)
+(4, 5, 0)
+(6, 7, 8)
+
+(1, 2, 3)
+(4, 5, 8)
+(6, 7, 0)
+
+(1, 2, 3)
+(4, 5, 8)
+(6, 0, 7)
+
+(1, 2, 3)
+(4, 5, 8)
+(0, 6, 7)
+
+(1, 2, 3)
+(0, 5, 8)
+(4, 6, 7)
+
+(1, 2, 3)
+(5, 0, 8)
+(4, 6, 7)
+
+(1, 2, 3)
+(5, 6, 8)
+(4, 0, 7)
+
+(1, 2, 3)
+(5, 6, 8)
+(4, 7, 0)
+
+(1, 2, 3)
+(5, 6, 0)
+(4, 7, 8)
+
+(1, 2, 3)
+(5, 0, 6)
+(4, 7, 8)
+
+(1, 2, 3)
+(0, 5, 6)
+(4, 7, 8)
+
+(1, 2, 3)
+(4, 5, 6)
+(0, 7, 8)
+
+(1, 2, 3)
+(4, 5, 6)
+(7, 0, 8)
+
+(1, 2, 3)
+(4, 5, 6)
+(7, 8, 0)
+'''
